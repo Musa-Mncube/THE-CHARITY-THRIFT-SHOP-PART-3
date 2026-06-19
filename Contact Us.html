@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Charity Shop">
+    <meta name="keywords" content="donate, secondhand, preloved">
+    <meta name="author" content="Musawenkosi Mncube">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us</title>
+
+    <style>
+        body {
+            background-color: rgb(248, 178, 137);
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .field {
+            margin: 10px;
+        }
+
+        input {
+            padding: 8px;
+            width: 300px;
+        }
+
+        .error-msg {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .success {
+            border: 2px solid green;
+        }
+
+        .error {
+            border: 2px solid red;
+        }
+
+        button {
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="Images/logopic.png"
+            style="width:50%; height:50%; border:7px solid rgb(248,102,57);">
+
+        <nav style="margin:15px;">
+            <a href="Home Page.html">Home Page</a> |
+            <a href="About Us.html">About Us</a> |
+            <a href="Products.html">Products</a> |
+            <a href="Contact Us.html">Get in touch with us</a> |
+            <a href="Support Us.html">Support Us</a>
+        </nav>
+
+        <h1>Call Us</h1>
+        <p>TEL: 011 672 9453</p>
+
+        <h2>Visit Us</h2>
+        <p>28 1st Ave, Florida, Roodepoort, 1710</p>
+
+        <h3>Email us on: floridacharitythriftshop@gmail.com</h3>
+    </header>
+
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d114608.54750785248!2d28.0317308!3d-26.1472834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x1e950b9300000001%3A0x335d35f228da3ccd!2sRosebank%20International%20%7C%20Braamfontein%20Campus%2C%20Braamfontein%20Centre%2C%2023%20Jorissen%20St%2C%20Braamfontein%2C%20Johannesburg%2C%202017!3m2!1d-26.192535499999998!2d28.0338644!5e0!3m2!1sen!2sza!4v1781814909081!5m2!1sen!2sza"
+        width="600"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy">
+    </iframe>
+
+    <form id="signupForm" novalidate>
+
+        <div class="field">
+            <label for="fullName">Full Name</label><br>
+            <input type="text" id="fullName" name="fullName" placeholder="Mbalenhle Gumede">
+            <div class="error-msg" id="fullNameError"></div>
+        </div>
+
+        <div class="field">
+            <label for="Email">Email Address</label><br>
+            <input type="text" id="Email" name="Email" placeholder="sinazocele1234@gmail.com">
+            <div class="error-msg" id="emailError"></div>
+        </div>
+
+        <div class="field">
+            <label for="phonenumber">Phone Number</label><br>
+            <input type="tel" id="phonenumber" name="phonenumber" placeholder="+27 72 123 1234">
+            <div class="error-msg" id="phonenumberError"></div>
+        </div>
+
+        <div class="field">
+            <label for="Age">Age</label><br>
+            <input type="number" id="Age" name="Age" placeholder="25">
+            <div class="error-msg" id="AgeError"></div>
+        </div>
+
+        <div class="field">
+            <label for="Password">Enter Password</label><br>
+            <input type="password" id="Password" name="Password" placeholder="Password1!">
+            <div class="error-msg" id="passwordError"></div>
+        </div>
+
+        <div class="field">
+            <label for="confirmPassword">Confirm Password</label><br>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Password1!">
+            <div class="error-msg" id="confirmPasswordError"></div>
+        </div>
+
+        <button type="submit">Create Account</button>
+        <button type="reset">Clear</button>
+
+    </form>
+
+    <script>
+
+        const form = document.getElementById("signupForm");
+
+        function setError(input, errorElement, message) {
+            input.classList.remove("success");
+            input.classList.add("error");
+            errorElement.textContent = message;
+        }
+
+        function setSuccess(input, errorElement) {
+            input.classList.remove("error");
+            input.classList.add("success");
+            errorElement.textContent = "";
+        }
+
+        form.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            let valid = true;
+
+            const fullName = document.getElementById("fullName");
+            const email = document.getElementById("Email");
+            const phone = document.getElementById("phonenumber");
+            const age = document.getElementById("Age");
+            const password = document.getElementById("Password");
+            const confirmPassword = document.getElementById("confirmPassword");
+
+            /* Full Name Validation */
+
+            if (fullName.value.trim() === "") {
+                setError(fullName,
+                    document.getElementById("fullNameError"),
+                    "Full name is required.");
+                valid = false;
+            } else {
+                setSuccess(fullName,
+                    document.getElementById("fullNameError"));
+            }
+
+            /* Email Validation */
+
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(email.value.trim())) {
+                setError(email,
+                    document.getElementById("emailError"),
+                    "Enter a valid email address.");
+                valid = false;
+            } else {
+                setSuccess(email,
+                    document.getElementById("emailError"));
+            }
+
+            /* Phone Validation */
+
+            const phonePattern =
+                /^\+?[0-9\s-]{10,15}$/;
+
+            if (!phonePattern.test(phone.value.trim())) {
+                setError(phone,
+                    document.getElementById("phonenumberError"),
+                    "Enter a valid phone number.");
+                valid = false;
+            } else {
+                setSuccess(phone,
+                    document.getElementById("phonenumberError"));
+            }
+
+            /* Age Validation */
+
+            const ageValue = parseInt(age.value);
+
+            if (isNaN(ageValue) || ageValue < 13) {
+                setError(age,
+                    document.getElementById("AgeError"),
+                    "You must be at least 13 years old.");
+                valid = false;
+            } else {
+                setSuccess(age,
+                    document.getElementById("AgeError"));
+            }
+
+            /* Password Validation */
+
+            const passwordPattern =
+                /^(?=.*[A-Z])(?=.*[0-9])(?=.*[\W_]).{8,}$/;
+
+            if (!passwordPattern.test(password.value)) {
+                setError(password,
+                    document.getElementById("passwordError"),
+                    "Password must contain 8 characters, 1 uppercase letter, 1 number and 1 symbol.");
+                valid = false;
+            } else {
+                setSuccess(password,
+                    document.getElementById("passwordError"));
+            }
+
+            /* Confirm Password Validation */
+
+            if (password.value !== confirmPassword.value) {
+                setError(confirmPassword,
+                    document.getElementById("confirmPasswordError"),
+                    "Passwords do not match.");
+                valid = false;
+            } else {
+                setSuccess(confirmPassword,
+                    document.getElementById("confirmPasswordError"));
+            }
+
+            /* Success Message */
+
+            if (valid) {
+                alert("Account created successfully!");
+                form.reset();
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+```
